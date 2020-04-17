@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Engineers/>
+    <!-- <Schedule/> -->
   </div>
 </template>
 
@@ -11,9 +12,12 @@ export default {
   name: 'App',
   
   components: {
-    Engineers
+    Engineers,
+    // Schedule
+
   }
 }
+
 </script>
 
 <style>

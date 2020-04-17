@@ -2,13 +2,15 @@
   <div class="engineers">
     <h1>Engineers</h1>
     <!-- looping engineers arry and displaying the data for first/last name and timezone. -->
-    <tbody
-      v-for="engineers in engineers"
-      :key="engineers.id"
-    >
-      <tr>
+    <tbody>
+      <tr v-for="engineers in engineers" :key="engineers.id">
         <td class='FL-table'>{{ engineers.firstname  }} {{engineers.lastname }}</td>
         <td class='T-table'>{{ engineers.timezone }}</td>
+      </tr>
+      <tr v-for="schedules in schedules" :key="schedules.id">
+        <p>{{moment(schedules).format('MMMM Do YYYY,h:mm:ss a')}}</p>
+        <p class='method'>{{date(schedules)}}</p>
+        <p class='filter'>{{schedules| moment}}</p>
       </tr>
     </tbody>
   </div>
@@ -16,25 +18,29 @@
 
 <script>
 import axios from "axios";
+import moment from 'moment'
 
 export default {
-  data() {
-    // creating the engineers arry to be looped and rendered.  
+  data() { // creating the engineers/ schedules arry's to be looped and rendered.  
     return {
-      // schedules:[],
+      schedules:[],
       engineers: [],
       errors: []
     };
   },
-
-  async created() {
+   async created() {
     try {
       // making axios call for engineers. 
       const response = await axios.get(
-        "https://kochava-ui-mini-project.herokuapp.com/engineers"
-      );
+        "https://kochava-ui-mini-project.herokuapp.com/engineers")
       this.engineers = response.data;
       console.log(response);
+      
+      const res = await axios.get(
+        "https://kochava-ui-mini-project.herokuapp.com/schedules")
+      this.schedules = res.data;
+      console.log(res);
+
     } catch (e) {
       // pushing errors to the errors arry.
       this.errors.push(e);
@@ -61,7 +67,5 @@ export default {
 
 }
 </style>
-<!--const res = await axios.get("https://kochava-ui-mini-project.herokuapp.com/schedule")
-      this.schedules = res.data;
-      console.log(res)
+<!--
 --> 
