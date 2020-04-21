@@ -3,21 +3,21 @@
   <div class="section-1">
 
     <div>
-      <h1>Engineers</h1>
+      <h1>Oncall Schedule</h1>
     </div>
     <div class="onCallDiv" v-if="details">
       <tbody class="display-table">
-        <tr>
+        <tr class='oncall-tr'>
           <td class=''>{{ details.engineer.firstname  }} {{details.engineer.lastname }}</td>
         </tr>
-        <tr>
+        <!-- <tr class='oncall-tr'>
           <td class=''> timezone: {{ details.engineer.timezone }}</td>
-        </tr>
-        <tr>
-          <td class="onCallTime">{{details.schedule.start}} -- {{details.schedule.end}} {{details.schedule.zone}} - </td>
+        </tr> -->
+        <tr class='oncall-tr'>
+          <td class="onCallTime">{{details.schedule.start}} -- {{details.schedule.end}} {{details.schedule.zone}}</td>
 
         </tr>
-        <tr>off set: (UTC {{ details.schedule.offset }})</tr>
+        <tr class='oncall-tr'><td>off set: (UTC {{ details.schedule.offset }})</td></tr>
       </tbody>
     </div>
     <div v-else>
@@ -137,18 +137,26 @@ export default {
   
 
 }
-.onCallDiv{
+.onCallDiv  {
   display: flex;
-  background-color: black;
+  background-color:#607B7D;
   color:#fff;
   text-align: center;
   align-content: center;
   justify-content: center;
+  height: 30vh;
+  .oncall-tr{
+    padding :5px;
+  }
   
 }
-.selectText{
-  background-color:#aaae8e
-}
+.selectText{display: flex;
+  background-color:#607B7D;
+  color:#e0e0e0;
+  text-align: center;
+  align-content: center;
+  justify-content: center;}
+
 
 </style>
 <!--
