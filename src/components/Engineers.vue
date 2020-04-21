@@ -3,7 +3,7 @@
   <div class="section-1">
 
     <div>
-      <h1>Oncall Schedule</h1>
+      <h1 class='heading-text'>Oncall Schedule</h1>
     </div>
     <div class="onCallDiv" v-if="details">
       <tbody class="display-table">
@@ -17,17 +17,17 @@
           <td class="onCallTime">{{details.schedule.start}} -- {{details.schedule.end}} {{details.schedule.zone}}</td>
 
         </tr>
-        <tr class='oncall-tr'><td>off set: (UTC {{ details.schedule.offset }})</td></tr>
+        <tr class='oncall-tr'><td> UTC Offset: {{ details.schedule.offset }}</td></tr>
       </tbody>
     </div>
-    <div v-else>
-      <p class="selectText">{{oncallText}}</p>
+    <div class="selectText" v-else>
+      <p >{{oncallText}}</p>
     </div>
     <!-- looping engineers array and displaying the data for first/last name and timezone. -->
-    <div class='engineers-'>
-      <tbody>
+    <div class='engineers'>
+      <tbody class="engineers-tbody">
         <tr v-for="engineer in engineers" :key="engineer.id">
-        <td class='FL-table' v-on:click='showDetails(engineer)'>{{engineer.firstname}} {{engineer.lastname}}</td>
+        <td class='grow-text' v-on:click='showDetails(engineer)'>{{engineer.firstname}} {{engineer.lastname}}</td>
         </tr>
       </tbody>
     </div>
@@ -129,35 +129,74 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+
+
 .engineers {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 30px;
   margin: 0 auto ;
-  
+  border: transparent 2px solid;
 
+  .grow-text:hover
+{
+        cursor:pointer;
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1) ;
+        transform: scale(1.1) ;
+        background-color: #fff;
+        border: #607B7D 2px solid;
+        padding: 2px;
+        
+}
+
+.engineers-tbody{
+  display: flex;
+  justify-content: space-around;
+}
 }
 .onCallDiv  {
+  display: flex;
+  background-color:#607B7D;
+  color:#fff;
+ 
+  height: 50vh;
+  .display-table{
+    width: -webkit-fill-available;
+    border: #fff solid 1px;
+    margin: 20px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .oncall-tr{
+    padding :12px;
+    border-bottom: solid #fff 1px;
+    width: 50vw;
+
+  }
+ 
+}
+// style for text to select a name below //
+.selectText{
   display: flex;
   background-color:#607B7D;
   color:#fff;
   text-align: center;
   align-content: center;
   justify-content: center;
-  height: 30vh;
-  .oncall-tr{
-    padding :5px;
+  height: 10vh;
+  padding :10px;
   }
-  
-}
-.selectText{display: flex;
-  background-color:#607B7D;
-  color:#e0e0e0;
-  text-align: center;
-  align-content: center;
-  justify-content: center;}
 
 
+
+
+
+
+// animation to grow a names text when hovering over it //
+ 
 </style>
 <!--
 --> 
